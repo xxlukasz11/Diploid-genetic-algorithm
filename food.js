@@ -1,6 +1,7 @@
 class Food {
 	constructor(x, y, r) {
 		this.position = new Position(x, y);
+		this.r = r;
 		this.shape = new CircleShape(x, y, r, "red");
 	}
 
