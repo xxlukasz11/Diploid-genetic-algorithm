@@ -21,7 +21,8 @@ class Popualtion {
 	calculateFitness() {
 		const fitnessCalculator = new FitnessCalculator(this.worldMap);
 		for(let individual of this.individuals) {
-			fitnessCalculator.calculate(individual);
+			const fitness = fitnessCalculator.calculate(individual);
+			individual.setFitness(fitness);
 		}
 	}
 

@@ -8,7 +8,13 @@ class Food {
 		this.shape.draw(context);
 	}
 
-	getPosition() {
-		return this.position;
+	distance(position) {
+		const dist = this.position.distance(position);
+		if(dist > this.r) {
+			return dist - this.r;
+		}
+		else {
+			return 0;
+		}
 	}
 }

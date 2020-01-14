@@ -9,4 +9,9 @@ class Position {
 		const dy = position.y - this.y;
 		return Math.sqrt(dx*dx + dy*dy);
 	}
+
+	translate(dx, dy) {
+		this.x += dx;
+		this.y += dy;
+	}
 }

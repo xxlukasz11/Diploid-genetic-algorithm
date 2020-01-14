@@ -46,4 +46,8 @@ class Chromosome {
 	getRandomIndex() {
 		return Math.floor(Math.random()*this.length);
 	}
+
+	getNoOfGenes() {
+		return this.geneManager.getNoOfGenes();
+	}
 }

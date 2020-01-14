@@ -18,4 +18,8 @@ class ControlGeneManager {
 	isRecesive(gene) {
 		return gene == this.recesive;
 	}
+
+	getNoOfGenes() {
+		return 2;
+	}
 }

@@ -5,6 +5,9 @@ class WorldMap {
 		this.obstacles = [];
 		this.food = null;
 		this.context = null;
+		this.startingPosition = new Position(0, 0);
+		this.diagonalLength = Math.sqrt(width*width+height*height);
+		this.moveLength = this.diagonalLength / 100.0;
 	}
 
 	setContext(context) {
@@ -34,6 +37,30 @@ class WorldMap {
 		if(this.food) {
 			this.food.draw(this.context);
 		}
+	}
+
+	getStartingPosition() {
+		return this.startingPosition;
+	}
+
+	setStartingPosition(position) {
+		this.startingPosition = position;
+	}
+
+	getDiagonalLength() {
+		return this.diagonalLength;
+	}
+
+	calculateDistanceFromFood(position) {
+		return this.food.distance(position);
+	}
+
+	getMoveLength() {
+		return this.moveLength;
+	}
+
+	setMoveLength(length) {
+		this.moveLength = length;
 	}
 
 }

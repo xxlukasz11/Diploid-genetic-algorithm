@@ -4,10 +4,14 @@ class FitnessCalculator {
 	}
 
 	calculate(individual) {
-		const chromosome = individual.getChromosome();
-		// TODO walk on map
-		// TODO read last position
-		// TODO calculate distance from food
-		// TODO calculate fitness
+		const mapWalker = new MapWalker(this.worldMap);
+		mapWalker.walk(individual);
+		const walkerPosition = mapWalker.getLastPosition();
+		const distance = this.worldMap.calculateDistanceFromFood(walkerPosition);
+		return this.fitnessFunction(distance / this.worldMap.getDiagonalLength());
+	}
+
+	fitnessFunction(x) {
+		return 1.0 / (0.1 + x);
 	}
 }
