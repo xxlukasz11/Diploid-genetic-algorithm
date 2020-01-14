@@ -6,15 +6,44 @@ class Diploid extends Individual {
 		this.leftChromosome = functionalChromosomeFactory.createRandomChromosome();
 		this.rightChromosome = functionalChromosomeFactory.createRandomChromosome();
 		this.controlChromosome = controlChromosomeFactory.createRandomChromosome();
+		this.expressionIsValid = false;
+		this.lastExpressed = null;
 	}
 
 	mutate(mutationRate) {
 		const mutationPoint = Math.random();
 		if(mutationPoint >= mutationRate) {
+			this.expressionIsValid = false;
 			this.leftChromosome.mutate();
 			this.rightChromosome.mutate();
 			this.controlChromosome.mutate();
 		}
+	}
+
+	crossWith(diploid) {
+		let start = this.controlChromosome.getRandomIndex();
+		let end = this.controlChromosome.getRandomIndex();
+		if(start > end) {
+			const tmp = start;
+			start = end;
+			end = tmp;
+		}
+		const newDiploid = new Diploid(this.functionalChromosomeFactory, this.controlChromosomeFactory);
+		newDiploid.controlChromosome = this.controlChromosome.sectionCrossover(diploid.controlChromosome, start, end);
+		if(Math.random() >= 0.5) {
+			newDiploid.leftChromosome = this.leftChromosome.sectionCrossover(diploid.rightChromosome, start, end);
+		}
+		else {
+			newDiploid.rightChromosome = this.rightChromosome.sectionCrossover(diploid.leftChromosome, start, end);
+		}
+		return newDiploid;
+	}
+
+	getChromosome() {
+		if(!this.expressionIsValid) {
+			this.expressChromosome();
+		}
+		return this.lastExpressed;
 	}
 
 	expressChromosome() {
@@ -30,6 +59,7 @@ class Diploid extends Individual {
 				finalChromosome.setGeneAt(i, this.rightChromosome.getGeneAt(i));
 			}
 		}
-		return finalChromosome;
+		this.lastExpressed = finalChromosome;
+		this.expressionIsValid = true;
 	}
 }

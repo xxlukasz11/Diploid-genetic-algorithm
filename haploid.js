@@ -12,7 +12,21 @@ class Haploid extends Individual {
 		}
 	}
 
-	expressChromosome() {
+	getChromosome() {
 		return this.chromosome;
+	}
+
+	crossWith(haploid) {
+		let start = this.chromosome.getRandomIndex();
+		let end = this.chromosome.getRandomIndex();
+		if(start > end) {
+			const tmp = start;
+			start = end;
+			end = tmp;
+		}
+		const newChromosome = this.chromosome.sectionCrossover(haploid.getChromosome(), start, end);
+		const newHaploid = new Haploid(this.chromosomeFactory);
+		newHaploid.chromosome = newChromosome;
+		return newHaploid;
 	}
 }

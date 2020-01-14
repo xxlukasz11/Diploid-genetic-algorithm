@@ -4,7 +4,7 @@ class FitnessCalculator {
 	}
 
 	calculate(individual) {
-		const chromosome = individual.expressChromosome();
+		const chromosome = individual.getChromosome();
 		// TODO walk on map
 		// TODO read last position
 		// TODO calculate distance from food

@@ -26,7 +26,8 @@ class Popualtion {
 	}
 
 	crossover() {
-		console.log("crossover");
+		const crossoverManager = new CrossoverManager(this.individuals);
+		this.individuals = crossoverManager.exclusiveCrossover();
 	}
 
 	mutation() {

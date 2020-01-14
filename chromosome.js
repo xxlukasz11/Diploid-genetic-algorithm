@@ -27,4 +27,23 @@ class Chromosome {
 		const randomIndex = Math.floor(Math.random()*this.length);
 		this.genes[randomIndex] = this.geneManager.randomGene();
 	}
+
+	sectionCrossover(chromosome, start, end) {
+		const newGenes = [];
+		for(let i = 0; i < this.length; ++i) {
+			if(i <= start || i > end) {
+				newGenes.push(this.genes[i]);
+			}
+			else {
+				newGenes.push(chromosome.genes[i]);
+			}
+		}
+		const newChromosome = new Chromosome(this.length, this.geneManager);
+		newChromosome.genes = newGenes;
+		return newChromosome;
+	}
+
+	getRandomIndex() {
+		return Math.floor(Math.random()*this.length);
+	}
 }

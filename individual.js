@@ -20,4 +20,9 @@ class Individual {
 	mutate() {
 		console.throw();
 	}
+
+	// abstract method
+	crossWith(individual) {
+		console.throw();
+	}
 }
