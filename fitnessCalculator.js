@@ -4,8 +4,8 @@ class FitnessCalculator {
 	}
 
 	calculate(individual) {
-		const mapWalker = new MapWalker(this.worldMap);
-		mapWalker.walk(individual);
+		const mapWalker = new MapWalker(this.worldMap, individual);
+		mapWalker.walk();
 		const walkerPosition = mapWalker.getLastPosition();
 		const distance = this.worldMap.calculateDistanceFromFood(walkerPosition);
 		const arg = distance / this.worldMap.getDiagonalLength();

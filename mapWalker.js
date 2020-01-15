@@ -1,13 +1,15 @@
 class MapWalker {
-	constructor(worldMap) {
+	constructor(worldMap, individual) {
 		this.worldMap = worldMap;
+		this.individual = individual;
 		this.moveLength = worldMap.getMoveLength();
 		this.currentPosition = worldMap.getStartingPosition();
 		this.collisionCount = 0;
+		this.positionBuffer = [this.currentPosition];
 	}
 
-	walk(individual) {
-		const chromosome = individual.getChromosome();
+	walk() {
+		const chromosome = this.individual.getChromosome();
 		let direction = this.decodeInitialDirection(chromosome);
 
 		const chromosomeLength = chromosome.getLength();
@@ -17,11 +19,16 @@ class MapWalker {
 			const dx = this.moveLength*Math.cos(radDir);
 			const dy = this.moveLength*Math.sin(radDir);
 			this.currentPosition.translate(dx, dy);
+			this.positionBuffer.push(this.currentPosition.clone());
 
 			if(this.worldMap.collidesWithObstacle(this.currentPosition) || !this.worldMap.isInside(this.currentPosition)) {
 				this.collisionCount++;
 			}
 		}
+	}
+
+	getPositionBuffer() {
+		return this.positionBuffer;
 	}
 
 	getCollisionCount() {

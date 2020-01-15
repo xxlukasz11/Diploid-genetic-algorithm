@@ -43,7 +43,7 @@ class WorldMap {
 	}
 
 	getStartingPosition() {
-		return this.startingPosition;
+		return this.startingPosition.clone();
 	}
 
 	setStartingPosition(position) {

@@ -32,3 +32,7 @@ const hBest = haploidPopulation.findBest();
 const dBest = diploidPopulation.findBest();
 console.log(hBest);
 console.log(dBest);
+
+const painter = new PathPainter(world, ctx, 2);
+painter.draw(hBest, "yellow");
+painter.draw(dBest, "blue");

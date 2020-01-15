@@ -14,4 +14,8 @@ class Position {
 		this.x += dx;
 		this.y += dy;
 	}
+
+	clone() {
+		return new Position(this.x, this.y);
+	}
 }
