@@ -3,6 +3,7 @@ class MapWalker {
 		this.worldMap = worldMap;
 		this.moveLength = worldMap.getMoveLength();
 		this.currentPosition = worldMap.getStartingPosition();
+		this.collisionCount = 0;
 	}
 
 	walk(individual) {
@@ -16,7 +17,15 @@ class MapWalker {
 			const dx = this.moveLength*Math.cos(radDir);
 			const dy = this.moveLength*Math.sin(radDir);
 			this.currentPosition.translate(dx, dy);
+
+			if(this.worldMap.collidesWithObstacle(this.currentPosition) || !this.worldMap.isInside(this.currentPosition)) {
+				this.collisionCount++;
+			}
 		}
+	}
+
+	getCollisionCount() {
+		return this.collisionCount;
 	}
 
 	toRadians(degree) {

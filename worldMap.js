@@ -26,6 +26,13 @@ class WorldMap {
 		return false;
 	}
 
+	isInside(position) {
+		return position.x < this.width
+			&& position.x > 0
+			&& position.y < this.height
+			&& position.y > 0;
+	}
+
 	draw() {
 		for(let obstacle of this.obstacles) {
 			obstacle.draw(this.context);
