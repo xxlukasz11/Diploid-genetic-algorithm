@@ -37,4 +37,14 @@ class Popualtion {
 		}
 	}
 
+	findBest() {
+		let best = this.individuals[0];
+		for(let ind of this.individuals) {
+			if(ind.getFitness() > best.getFitness()) {
+				best = ind;
+			}
+		}
+		return best;
+	}
+
 }

@@ -1,17 +1,13 @@
 class WorldMap {
-	constructor(width, height) {
+	constructor(width, height, context) {
 		this.width = width;
 		this.height = height;
+		this.context = context;
 		this.obstacles = [];
 		this.food = null;
-		this.context = null;
 		this.startingPosition = new Position(0, 0);
 		this.diagonalLength = Math.sqrt(width*width+height*height);
 		this.moveLength = this.diagonalLength / 100.0;
-	}
-
-	setContext(context) {
-		this.context = context;
 	}
 
 	addObstacle(obstacle) {
