@@ -5,7 +5,7 @@ class MapWalker {
 		this.moveLength = worldMap.getMoveLength();
 		this.currentPosition = worldMap.getStartingPosition();
 		this.collisionCount = 0;
-		this.positionBuffer = [this.currentPosition];
+		this.positionBuffer = [this.currentPosition.clone()];
 	}
 
 	walk() {
@@ -36,7 +36,7 @@ class MapWalker {
 	}
 
 	toRadians(degree) {
-		return Math.PI / 180.0;
+		return degree * Math.PI / 180.0;
 	}
 
 	getLastPosition() {
