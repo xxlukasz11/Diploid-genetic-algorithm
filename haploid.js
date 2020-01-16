@@ -12,6 +12,10 @@ class Haploid extends Individual {
 		}
 	}
 
+	updateChromosomeLength(chromosomeLength) {
+		this.chromosome.adjustLength(chromosomeLength);
+	}
+
 	getChromosome() {
 		return this.chromosome;
 	}

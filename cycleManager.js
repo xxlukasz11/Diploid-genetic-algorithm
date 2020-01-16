@@ -25,5 +25,6 @@ class CycleManager {
 			this.nextStep();
 		}
 		this.population.calculateFitness();
+		this.reset();
 	}
 }

@@ -6,6 +6,11 @@ class DiploidFactory {
 		this.controlChromosomeFactory = new ChromosomeFactory(chromosomeLength, controlGeneManager);
 	}
 
+	updateChromosomeLength(chromosomeLength) {
+		this.functionalChromosomeFactory.setChromosomeLength(chromosomeLength);
+		this.controlChromosomeFactory.setChromosomeLength(chromosomeLength);
+	}
+
 	create() {
 		const diploid = new Diploid(this.functionalChromosomeFactory, this.controlChromosomeFactory);
 		return diploid;

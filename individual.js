@@ -25,4 +25,9 @@ class Individual {
 	crossWith(individual) {
 		console.throw();
 	}
+
+	// abstract method
+	updateChromosomeLength(chromosomeLength) {
+		console.throw();
+	}
 }

@@ -5,7 +5,7 @@ class ChromosomeFactory {
 	}
 
 	setChromosomeLength(length) {
-		this.chromosomeLength = this.chromosomeLength;
+		this.chromosomeLength = length;
 	}
 
 	createRandomChromosome() {

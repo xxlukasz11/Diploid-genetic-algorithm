@@ -12,6 +12,13 @@ class Popualtion {
 		this.worldMap = worldMap;
 	}
 
+	changeChromosomeLength(chromosomeLength) {
+		this.individualFactory.updateChromosomeLength(chromosomeLength);
+		for(let ind of this.individuals) {
+			ind.updateChromosomeLength(chromosomeLength);
+		}
+	}
+
 	createIndividuals() {
 		for(let i = 0; i < this.populationSize; ++i) {
 			this.individuals[i] = this.individualFactory.create();

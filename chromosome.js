@@ -11,6 +11,18 @@ class Chromosome {
 		}
 	}
 
+	adjustLength(length) {
+		if(length < this.length) {
+			this.genes = this.genes.slice(0, length);
+		}
+		else {
+			for(let i = this.length; i < length; ++i) {
+				this.genes.push(this.geneManager.randomGene());
+			}
+		}
+		this.length = length;
+	}
+
 	getLength() {
 		return this.length;
 	}

@@ -6,11 +6,12 @@ class WorldMapFactory {
 	}
 
 	createVersionOne() {
-		const centerObstacle = new CircleObstacle(this.width/2, this.height/2, this.height/5);
-		const food = new Food(this.width*0.9, this.height*0.9, this.height/50);
+		const topObstacle = new CircleObstacle(this.width*0.5, this.height*0.2, this.height*0.2);
+		const bottomObstacle = new CircleObstacle(this.width*0.65, this.height*0.75, this.height*0.18);
+		const food = new Food(this.width*0.9, this.height*0.3, this.height/50);
 		const startingPosition = new Position(this.width*0.1, this.height*0.1);
 
-		return this.create(food, startingPosition, [centerObstacle]);
+		return this.create(food, startingPosition, [topObstacle, bottomObstacle]);
 	}
 	
 	create(food, startingPosition, obstacles) {

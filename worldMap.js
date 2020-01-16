@@ -7,7 +7,7 @@ class WorldMap {
 		this.food = null;
 		this.startingPosition = new Position(0, 0);
 		this.diagonalLength = Math.sqrt(width*width+height*height);
-		this.moveLength = this.diagonalLength / 100.0;
+		this.moveLength = this.diagonalLength / 50.0;
 	}
 
 	addObstacle(obstacle) {

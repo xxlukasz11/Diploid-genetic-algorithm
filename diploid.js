@@ -20,6 +20,12 @@ class Diploid extends Individual {
 		}
 	}
 
+	updateChromosomeLength(chromosomeLength) {
+		this.leftChromosome.adjustLength(chromosomeLength);
+		this.rightChromosome.adjustLength(chromosomeLength);
+		this.controlChromosome.adjustLength(chromosomeLength);
+	}
+
 	crossWith(diploid) {
 		let start = this.controlChromosome.getRandomIndex();
 		let end = this.controlChromosome.getRandomIndex();

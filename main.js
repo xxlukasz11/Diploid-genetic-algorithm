@@ -11,19 +11,25 @@ const mFactory = new WorldMapFactory(width, height, ctx);
 const world = mFactory.createVersionOne();
 world.draw();
 
-const chromosomeLength = 50;
+let chromosomeLength = 20;
 const populationSize = 50;
-const mutationRate = 0.02;
+const mutationRate = 0.01;
 let pFactory = new PopulationFactory(populationSize, chromosomeLength, mutationRate, world);
 
 let haploidPopulation = pFactory.createHaploidPopulation();
 let diploidPopulation = pFactory.createDiploidPopulation();
 
-const cycleLength = 10;
+const cycleLength = 5000;
 const hCycle = new CycleManager(haploidPopulation, cycleLength);
 const dCycle = new CycleManager(diploidPopulation, cycleLength);
-hCycle.start();
-dCycle.start();
+
+for(let length = 10; length <= 40; length += 10) {
+	chromosomeLength = length;
+	haploidPopulation.changeChromosomeLength(chromosomeLength);
+	diploidPopulation.changeChromosomeLength(chromosomeLength);
+	hCycle.start();
+	dCycle.start();
+}
 
 console.log(haploidPopulation);
 console.log(diploidPopulation);
