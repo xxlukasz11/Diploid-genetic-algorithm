@@ -1,3 +1,5 @@
+function start() {
+
 const width = 500;
 const height = 500;
 const canvas = document.getElementById('canvas');
@@ -19,20 +21,18 @@ let pFactory = new PopulationFactory(populationSize, chromosomeLength, mutationR
 let haploidPopulation = pFactory.createHaploidPopulation();
 let diploidPopulation = pFactory.createDiploidPopulation();
 
-const cycleLength = 1000;
+const cycleLength = 300;
+
 const hCycle = new CycleManager(haploidPopulation, cycleLength);
 const dCycle = new CycleManager(diploidPopulation, cycleLength);
 
-for(let length = 10; length <= 50; length += 10) {
+for(let length = 10; length <= 60; length += 10) {
 	chromosomeLength = length;
 	haploidPopulation.changeChromosomeLength(chromosomeLength);
 	diploidPopulation.changeChromosomeLength(chromosomeLength);
 	hCycle.start();
 	dCycle.start();
 }
-
-console.log(haploidPopulation);
-console.log(diploidPopulation);
 
 const hBest = haploidPopulation.findBest();
 const dBest = diploidPopulation.findBest();
@@ -42,3 +42,5 @@ console.log(dBest);
 const painter = new PathPainter(world, ctx, 2);
 painter.draw(hBest, "yellow");
 painter.draw(dBest, "blue");
+
+} // function
