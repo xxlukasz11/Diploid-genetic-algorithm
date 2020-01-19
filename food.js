@@ -18,4 +18,8 @@ class Food {
 			return 0;
 		}
 	}
+
+	isInside(position) {
+		return this.distance(position) == 0;
+	}
 }

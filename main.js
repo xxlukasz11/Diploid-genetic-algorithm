@@ -12,14 +12,14 @@ const world = mFactory.createVersionOne();
 world.draw();
 
 let chromosomeLength = 20;
-const populationSize = 50;
+const populationSize = 200;
 const mutationRate = 0.01;
 let pFactory = new PopulationFactory(populationSize, chromosomeLength, mutationRate, world);
 
 let haploidPopulation = pFactory.createHaploidPopulation();
 let diploidPopulation = pFactory.createDiploidPopulation();
 
-const cycleLength = 4000;
+const cycleLength = 1000;
 const hCycle = new CycleManager(haploidPopulation, cycleLength);
 const dCycle = new CycleManager(diploidPopulation, cycleLength);
 

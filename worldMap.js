@@ -26,6 +26,10 @@ class WorldMap {
 		return false;
 	}
 
+	found_food(position) {
+		return this.food.isInside(position);
+	}
+
 	isInside(position) {
 		return position.x < this.width
 			&& position.x > 0

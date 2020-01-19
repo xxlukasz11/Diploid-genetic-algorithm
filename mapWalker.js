@@ -5,6 +5,8 @@ class MapWalker {
 		this.moveLength = worldMap.getMoveLength();
 		this.currentPosition = worldMap.getStartingPosition();
 		this.collisionCount = 0;
+		this.successFlag = false;
+		this.successCount = 0;
 		this.positionBuffer = [this.currentPosition.clone()];
 	}
 
@@ -21,10 +23,27 @@ class MapWalker {
 			this.currentPosition.translate(dx, dy);
 			this.positionBuffer.push(this.currentPosition.clone());
 
-			if(this.worldMap.collidesWithObstacle(this.currentPosition) || !this.worldMap.isInside(this.currentPosition)) {
-				this.collisionCount++;
+			if(this.successFlag) {
+				this.successCount++;
 			}
+			else {
+				if(this.worldMap.collidesWithObstacle(this.currentPosition) || !this.worldMap.isInside(this.currentPosition)) {
+					this.collisionCount++;
+				}
+				else if(this.worldMap.found_food(this.currentPosition)) {
+					this.successFlag = true;
+				}
+			}
+
 		}
+	}
+
+	foundFood() {
+		return this.successFlag;
+	}
+
+	getSuccessCount() {
+		return this.successCount;
 	}
 
 	getPositionBuffer() {
