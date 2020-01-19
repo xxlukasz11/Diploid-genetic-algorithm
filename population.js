@@ -5,6 +5,7 @@ class Popualtion {
 		this.individualFactory = individualFactory;
 		this.mutationRate = mutationRate;
 		this.worldMap = worldMap;
+		this.mean_fitness = 0;
 		this.createIndividuals();
 	}
 
@@ -27,10 +28,17 @@ class Popualtion {
 
 	calculateFitness() {
 		const fitnessCalculator = new FitnessCalculator(this.worldMap);
+		let fitness_sum = 0;
 		for(let individual of this.individuals) {
 			const fitness = fitnessCalculator.calculate(individual);
+			fitness_sum += fitness;
 			individual.setFitness(fitness);
 		}
+		this.mean_fitness = fitness_sum / this.populationSize;
+	}
+
+	get_mean_fitness() {
+		return this.mean_fitness;
 	}
 
 	crossover() {

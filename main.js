@@ -19,11 +19,11 @@ let pFactory = new PopulationFactory(populationSize, chromosomeLength, mutationR
 let haploidPopulation = pFactory.createHaploidPopulation();
 let diploidPopulation = pFactory.createDiploidPopulation();
 
-const cycleLength = 5000;
+const cycleLength = 4000;
 const hCycle = new CycleManager(haploidPopulation, cycleLength);
 const dCycle = new CycleManager(diploidPopulation, cycleLength);
 
-for(let length = 10; length <= 40; length += 10) {
+for(let length = 10; length <= 50; length += 10) {
 	chromosomeLength = length;
 	haploidPopulation.changeChromosomeLength(chromosomeLength);
 	diploidPopulation.changeChromosomeLength(chromosomeLength);
