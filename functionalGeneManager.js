@@ -1,7 +1,7 @@
 class FunctionalGeneManager {
 	constructor() {
 		this.minValue = 0;
-		this.maxValue = 4;
+		this.maxValue = 7;
 		this.geneRange = this.maxValue - this.minValue + 1;
 	}
 

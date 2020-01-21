@@ -23,6 +23,9 @@ class PathPainter {
 		this.context.moveTo(positions[0].x, positions[0].y);
 		for(let i = 1; i < positions.length; ++i) {
 			this.context.lineTo(positions[i].x, positions[i].y);
+			if(this.worldMap.foundFood(positions[i])) {
+				break;
+			}
 		}
 		this.context.stroke();
 	}

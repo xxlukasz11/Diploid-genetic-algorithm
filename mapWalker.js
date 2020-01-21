@@ -6,7 +6,7 @@ class MapWalker {
 		this.currentPosition = worldMap.getStartingPosition();
 		this.collisionCount = 0;
 		this.successFlag = false;
-		this.successCount = 0;
+		this.successRatio = 0;
 		this.positionBuffer = [this.currentPosition.clone()];
 	}
 
@@ -23,15 +23,13 @@ class MapWalker {
 			this.currentPosition.translate(dx, dy);
 			this.positionBuffer.push(this.currentPosition.clone());
 
-			if(this.successFlag) {
-				this.successCount++;
-			}
-			else {
+			if(!this.successFlag) {
 				if(this.worldMap.collidesWithObstacle(this.currentPosition) || !this.worldMap.isInside(this.currentPosition)) {
 					this.collisionCount++;
 				}
-				else if(this.worldMap.found_food(this.currentPosition)) {
+				else if(this.worldMap.foundFood(this.currentPosition)) {
 					this.successFlag = true;
+					this.successRatio = (chromosomeLength - i) / chromosomeLength;
 				}
 			}
 
@@ -42,8 +40,8 @@ class MapWalker {
 		return this.successFlag;
 	}
 
-	getSuccessCount() {
-		return this.successCount;
+	getSuccessRatio() {
+		return this.successRatio;
 	}
 
 	getPositionBuffer() {
@@ -68,8 +66,8 @@ class MapWalker {
 	}
 
 	decodeDirectionChange(chromosome, i) {
-		const delta = 180.0 / (chromosome.getNoOfGenes() - 1);
+		const delta = 120.0 / (chromosome.getNoOfGenes() - 1);
 		const angle = delta*chromosome.getGeneAt(i);
-		return 90.0 - angle;
+		return 60.0 - angle;
 	}
 }

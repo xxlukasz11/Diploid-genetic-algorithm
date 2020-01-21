@@ -21,6 +21,7 @@ class Diploid extends Individual {
 	}
 
 	updateChromosomeLength(chromosomeLength) {
+		this.expressionIsValid = false;
 		this.leftChromosome.adjustLength(chromosomeLength);
 		this.rightChromosome.adjustLength(chromosomeLength);
 		this.controlChromosome.adjustLength(chromosomeLength);

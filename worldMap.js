@@ -26,7 +26,7 @@ class WorldMap {
 		return false;
 	}
 
-	found_food(position) {
+	foundFood(position) {
 		return this.food.isInside(position);
 	}
 

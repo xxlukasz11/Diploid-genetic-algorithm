@@ -18,10 +18,8 @@ class FitnessCalculator {
 		if(collisionCount > 0) {
 			fitnessValue = this.penaltyFunction(fitnessValue, collisionCount);
 		}
-		else {
-			if(mapWalker.foundFood()) {
-				fitnessValue = this.success_function(fitnessValue, mapWalker.getSuccessCount())
-			}
+		else if(mapWalker.foundFood()) {
+			fitnessValue = this.successFunction(mapWalker.getSuccessRatio());
 		}
 		return fitnessValue;
 	}
@@ -30,12 +28,8 @@ class FitnessCalculator {
 		return 1.0 / (0.1 + x);
 	}
 
-	success_function(fitness, successCount) {
-		let factor = 1.0;
-		for(let i = 0; i < successCount; ++i) {
-			factor *= 1.1;
-		}
-		return fitness*factor;
+	successFunction(successRatio) {
+		return 10 + 10*successRatio;
 	}
 
 	penaltyFunction(fitness, collisionCount) {
