@@ -6,6 +6,7 @@ class Diploid extends Individual {
 		this.leftChromosome = functionalChromosomeFactory.createRandomChromosome();
 		this.rightChromosome = functionalChromosomeFactory.createRandomChromosome();
 		this.controlChromosome = controlChromosomeFactory.createRandomChromosome();
+		this.controlChromosome2 = controlChromosomeFactory.createRandomChromosome();
 		this.expressionIsValid = false;
 		this.lastExpressed = null;
 	}
@@ -17,11 +18,11 @@ class Diploid extends Individual {
 			this.leftChromosome.mutate();
 			this.rightChromosome.mutate();
 			this.controlChromosome.mutate();
+			this.controlChromosome2.mutate();
 		}
 	}
 
 	updateChromosomeLength(chromosomeLength) {
-		this.expressionIsValid = false;
 		this.leftChromosome.adjustLength(chromosomeLength);
 		this.rightChromosome.adjustLength(chromosomeLength);
 		this.controlChromosome.adjustLength(chromosomeLength);
@@ -37,12 +38,10 @@ class Diploid extends Individual {
 		}
 		const newDiploid = new Diploid(this.functionalChromosomeFactory, this.controlChromosomeFactory);
 		newDiploid.controlChromosome = this.controlChromosome.sectionCrossover(diploid.controlChromosome, start, end);
-		if(Math.random() >= 0.5) {
-			newDiploid.leftChromosome = this.leftChromosome.sectionCrossover(diploid.rightChromosome, start, end);
-		}
-		else {
-			newDiploid.rightChromosome = this.rightChromosome.sectionCrossover(diploid.leftChromosome, start, end);
-		}
+		newDiploid.controlChromosome2 = this.controlChromosome2.sectionCrossover(diploid.controlChromosome2, start, end);
+		newDiploid.leftChromosome = this.leftChromosome.sectionCrossover(diploid.leftChromosome, start, end);
+		newDiploid.rightChromosome = this.rightChromosome.sectionCrossover(diploid.rightChromosome, start, end);
+		
 		return newDiploid;
 	}
 
@@ -59,11 +58,14 @@ class Diploid extends Individual {
 		const chromosomeLength = finalChromosome.getLength();
 		for(let i = 0; i < chromosomeLength; ++i) {
 			const controlGene = this.controlChromosome.getGeneAt(i);
-			if(controlGeneManager.isDominant(controlGene)) {
-				finalChromosome.setGeneAt(i, this.leftChromosome.getGeneAt(i));
+			const controlGene2 = this.controlChromosome2.getGeneAt(i);
+			const fGen1 = this.leftChromosome.getGeneAt(i);
+			const fGen2 = this.rightChromosome.getGeneAt(i);
+			if(controlGeneManager.isDominant(controlGene) || controlGeneManager.isDominant(controlGene2)) {
+				finalChromosome.setGeneAt(i, (fGen1 > fGen2 ? fGen1 : fGen2));
 			}
 			else {
-				finalChromosome.setGeneAt(i, this.rightChromosome.getGeneAt(i));
+				finalChromosome.setGeneAt(i, (fGen1 > fGen2 ? fGen2 : fGen1));
 			}
 		}
 		this.lastExpressed = finalChromosome;

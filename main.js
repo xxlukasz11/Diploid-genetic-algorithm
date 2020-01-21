@@ -20,7 +20,7 @@ let pFactory = new PopulationFactory(populationSize, chromosomeLength, mutationR
 let haploidPopulation = pFactory.createHaploidPopulation();
 let diploidPopulation = pFactory.createDiploidPopulation();
 
-const cycleLength = 300;
+const cycleLength = 100;
 const hCycle = new CycleManager(haploidPopulation, cycleLength);
 const dCycle = new CycleManager(diploidPopulation, cycleLength);
 
@@ -28,7 +28,7 @@ let mapIndex = 0;
 doCycle();
 
 function doCycle() {
-	if(mapIndex > 5) {
+	if(mapIndex > 20) {
 		return;
 	}
 	let currentWorld;
