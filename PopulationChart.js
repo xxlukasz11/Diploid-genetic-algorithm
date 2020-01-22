@@ -5,6 +5,8 @@ class PopulationChart {
 		this.haploidColor = "rgb(255, 99, 132)";
 		this.diploidColor = "blue";
 		this.initializeChart();
+		this.hMeanData = [];
+		this.dMeanData = [];
 	}
 
 	initializeChart() {
@@ -31,8 +33,42 @@ class PopulationChart {
 
 	setData(haploidData, diploidData) {
 		this.chart.data.labels = this.createLabels(haploidData.length);
-		this.chart.data.datasets[0].data = haploidData;
-		this.chart.data.datasets[1].data = diploidData;
+		this.hMeanData.push(haploidData);
+		this.dMeanData.push(diploidData);
+		this.chart.data.datasets[0].data = this.meanHaploidArray();
+		this.chart.data.datasets[1].data = this.meanDiploidArray();
+	}
+
+	meanHaploidArray() {
+		const meanArray = new Array(this.hMeanData[0].length);
+		for(let i = 0; i < meanArray.length; ++i) {
+			meanArray[i]  = 0.0;
+		}
+		for(let array of this.hMeanData) {
+			for(let i = 0; i < array.length; ++i) {
+				meanArray[i] += array[i];
+			}
+		}
+		for(let i = 0; i < meanArray.length; ++i) {
+			meanArray[i] /= this.hMeanData.length;
+		}
+		return meanArray;
+	}
+
+	meanDiploidArray() {
+		const meanArray = new Array(this.dMeanData[0].length);
+		for(let i = 0; i < meanArray.length; ++i) {
+			meanArray[i]  = 0.0;
+		}
+		for(let array of this.dMeanData) {
+			for(let i = 0; i < array.length; ++i) {
+				meanArray[i] += array[i];
+			}
+		}
+		for(let i = 0; i < meanArray.length; ++i) {
+			meanArray[i] /= this.dMeanData.length;
+		}
+		return meanArray;
 	}
 
 	addData(label, haploidData, diploidData) {

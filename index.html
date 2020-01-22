@@ -6,9 +6,15 @@
 		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	</head>
 	<body>
-		<canvas id="canvas"></canvas>
 		<div>
-			<button onclick="start()">Start</button>
+			<div>
+				<canvas id="canvas"></canvas>
+			</div>
+			<div>
+				<p>Haploid success: <span id="haploidSuccessLabel1">0</span> : <span id="haploidSuccessLabel2">0</span> = <span id="haploidSuccessSum">0</span></p>
+				<p>Diploid success: <span id="diploidSuccessLabel1">0</span> : <span id="diploidSuccessLabel2">0</span> = <span id="diploidSuccessSum">0</span></p>
+				<button onclick="start()">Start</button>
+			</div>
 		</div>
 		<div>
 			<canvas id="fitnessChart"></canvas>

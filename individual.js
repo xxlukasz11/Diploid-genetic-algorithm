@@ -1,6 +1,15 @@
 class Individual {
 	constructor() {
 		this.fitness = 0;
+		this.foundFood = false;
+	}
+
+	setFoundFood() {
+		this.foundFood = true;
+	}
+
+	getFoundFood(){
+		return this.foundFood;
 	}
 
 	setFitness(fitness) {

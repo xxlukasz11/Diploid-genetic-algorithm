@@ -9,10 +9,10 @@ class FitnessCalculator {
 		const walkerPosition = mapWalker.getLastPosition();
 		const distance = this.worldMap.calculateDistanceFromFood(walkerPosition);
 		const arg = distance / this.worldMap.getDiagonalLength();
-		return this.computeFitnessValue(arg, mapWalker);
+		return this.computeFitnessValue(arg, mapWalker, individual);
 	}
 
-	computeFitnessValue(arg, mapWalker) {
+	computeFitnessValue(arg, mapWalker, individual) {
 		let fitnessValue = this.fitnessFunction(arg);
 		const collisionCount = mapWalker.getCollisionCount();
 		if(collisionCount > 0) {
@@ -20,6 +20,7 @@ class FitnessCalculator {
 		}
 		else if(mapWalker.foundFood()) {
 			fitnessValue = this.successFunction(mapWalker.getSuccessRatio());
+			individual.setFoundFood();
 		}
 		return fitnessValue;
 	}
@@ -35,7 +36,7 @@ class FitnessCalculator {
 	penaltyFunction(fitness, collisionCount) {
 		let factor = 1.0;
 		for(let i = 0; i < collisionCount; ++i) {
-			factor *= 0.5;
+			factor *= 0.3;
 		}
 		return fitness*factor;
 	}
