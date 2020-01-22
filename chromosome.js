@@ -38,6 +38,8 @@ class Chromosome {
 	mutate() {
 		const randomIndex = Math.floor(Math.random()*this.length);
 		this.genes[randomIndex] = this.geneManager.randomGene();
+		const randomIndex2 = Math.floor(Math.random()*this.length);
+		this.genes[randomIndex2] = this.geneManager.randomGene();
 	}
 
 	sectionCrossover(chromosome, start, end) {

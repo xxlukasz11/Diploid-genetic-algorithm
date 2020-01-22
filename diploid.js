@@ -62,10 +62,10 @@ class Diploid extends Individual {
 			const fGen1 = this.leftChromosome.getGeneAt(i);
 			const fGen2 = this.rightChromosome.getGeneAt(i);
 			if(controlGeneManager.isDominant(controlGene) || controlGeneManager.isDominant(controlGene2)) {
-				finalChromosome.setGeneAt(i, (fGen1 > fGen2 ? fGen1 : fGen2));
+				finalChromosome.setGeneAt(i, fGen1);
 			}
 			else {
-				finalChromosome.setGeneAt(i, (fGen1 > fGen2 ? fGen2 : fGen1));
+				finalChromosome.setGeneAt(i, fGen2);
 			}
 		}
 		this.lastExpressed = finalChromosome;

@@ -5,7 +5,7 @@ class Popualtion {
 		this.individualFactory = individualFactory;
 		this.mutationRate = mutationRate;
 		this.worldMap = worldMap;
-		this.mean_fitness = 0;
+		this.meanFitness = 0;
 		this.createIndividuals();
 	}
 
@@ -34,11 +34,11 @@ class Popualtion {
 			fitness_sum += fitness;
 			individual.setFitness(fitness);
 		}
-		this.mean_fitness = fitness_sum / this.populationSize;
+		this.meanFitness = fitness_sum / this.populationSize;
 	}
 
-	get_mean_fitness() {
-		return this.mean_fitness;
+	getMeanFitness() {
+		return this.meanFitness;
 	}
 
 	crossover() {

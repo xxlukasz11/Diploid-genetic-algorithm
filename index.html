@@ -3,14 +3,19 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Simulation</title>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	</head>
 	<body>
 		<canvas id="canvas"></canvas>
 		<div>
 			<button onclick="start()">Start</button>
 		</div>
+		<div>
+			<canvas id="fitnessChart"></canvas>
+		</div>
 
 		<script src="position.js"></script>
+		<script src="PopulationChart.js"></script>
 
 		<script src="functionalGeneManager.js"></script>
 		<script src="controlGeneManager.js"></script>
@@ -39,7 +44,6 @@
 		<script src="populationFactory.js"></script>
 
 		<script src="cycleManager.js"></script>
-
 		<script src="main.js"></script>
 	</body>
 </html>
