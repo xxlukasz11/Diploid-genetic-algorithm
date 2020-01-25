@@ -15,20 +15,20 @@ const dSuc2 = document.getElementById('diploidSuccessLabel2');
 const hSum = document.getElementById('haploidSuccessSum');
 const dSum = document.getElementById('diploidSuccessSum');
 
+const chromosomeLength = 60;
+const populationSize = 100;
+const mutationRate = 0.05;
+const cycleLength = 500;
+const meanFitnessCycle = 10;
+
 const mFactory = new WorldMapFactory(width, height, ctx);
 const world = mFactory.createVersionOne();
 const world2 = mFactory.createVersionTwo();
 
-let chromosomeLength = 60;
-const populationSize = 200;
-const mutationRate = 0.01;
 let pFactory = new PopulationFactory(populationSize, chromosomeLength, mutationRate, world);
-
 let haploidPopulation = pFactory.createHaploidPopulation();
 let diploidPopulation = pFactory.createDiploidPopulation();
 
-const cycleLength = 300;
-const meanFitnessCycle = 10;
 const hCycle = new CycleManager(haploidPopulation, cycleLength, meanFitnessCycle);
 const dCycle = new CycleManager(diploidPopulation, cycleLength, meanFitnessCycle);
 
